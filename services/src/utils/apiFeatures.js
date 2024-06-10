@@ -1,64 +1,35 @@
-class APIFeatures {
-  constructor(query, queryString) {
-    this.query = query;
-    this.queryString = queryString;
-  }
+import express from 'express';
+import cors from 'cors';
+import path from 'path';
+import { fileURLToPath } from 'url';
+import cookieParser from 'cookie-parser';
+import dotenv from 'dotenv';
+import AppError from './src/utils/appError.js'; // Ensure this path is correct
+import errorHandler from './src/middlewares/errorMiddleware.js'; // Ensure this path is correct
 
-  filter() {
-    const queryObj = { ...this.queryString };
-    const excludedFields = ['page', 'sort', 'limit', 'fields'];
-    excludedFields.forEach((el) => delete queryObj[el]);
+dotenv.config();
 
-    let queryStr = JSON.stringify(queryObj);
-    queryStr = queryStr.replace(/\b(gte|gt|lte|lt)\b/g, (match) => `$${match}`);
-    queryStr = queryStr.replace(/-/g, ' ');
-    const finalQuery = JSON.parse(queryStr);
+// Define __filename and __dirname using import.meta.url
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
-    if (finalQuery.fullName) {
-      const nameRegex = new RegExp(`^${finalQuery.fullName}`, 'i');
-      finalQuery.fullName = nameRegex;
-    }
-    if (finalQuery.plateNumber) {
-      const nameRegex = new RegExp(`^${finalQuery.plateNumber}`, 'i');
-      finalQuery.plateNumber = nameRegex;
-    }
+const app = express();
 
-    this.query = this.query.find(finalQuery);
+app.use(cookieParser());
+app.use(
+  cors({
+    origin: process.env.FRONTEND_URL,
+    credentials: true,
+  }),
+);
 
-    return this;
-  }
+app.use(express.json());
+app.use(express.static(path.join(__dirname, 'public')));
 
-  sort() {
-    if (this.queryString.sort) {
-      const sortBy = this.queryString.sort.split(',').join(' ');
-      this.query = this.query.sort(sortBy);
-    } else {
-      this.query = this.query.sort('fullName plateNumber -createdAt');
-    }
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+});
 
-    return this;
-  }
+app.use(errorHandler);
 
-  limitFields() {
-    if (this.queryString.fields) {
-      const fields = this.queryString.fields.split(',').join(' ');
-      this.query = this.query.select(fields);
-    } else {
-      this.query = this.query.select('-__v');
-    }
-
-    return this;
-  }
-
-  paginate() {
-    const page = parseInt(this.queryString.page, 10) || 1;
-    const limit = parseInt(this.queryString.limit, 10) || 50;
-    const skip = (page - 1) * limit;
-
-    this.query = this.query.skip(skip).limit(limit);
-
-    return this;
-  }
-}
-
-export default APIFeatures;
+export default app;

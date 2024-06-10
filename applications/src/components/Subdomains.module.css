@@ -1,0 +1,36 @@
+/* Subdomains.module.css */
+.container {
+  width: 100%;
+  margin: 6rem 0;
+  padding: 20px;
+  background-color: #ffffff;
+  border-radius: 5px;
+  box-shadow: 2px 0px 4px rgba(0, 0, 0, 0.1);
+}
+
+.title {
+  font-size: 24px;
+  margin-bottom: 20px;
+  font-weight: 300;
+}
+
+.button {
+  background: linear-gradient(90deg, #0059fc 0, #4d8bfd 100%);
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
+  border-radius: 1rem;
+  border: none;
+  cursor: pointer;
+  color: white;
+  font-style: Rubik;
+}
+.button:hover {
+  background: linear-gradient(90deg, #003bb5 0%, #366bdb 100%);
+}
+
+.pagination {
+  display: flex;
+  justify-content: space-between;
+  margin-top: 20px;
+  padding: 0 25rem;
+}

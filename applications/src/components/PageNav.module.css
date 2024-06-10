@@ -1,0 +1,47 @@
+/* PageNav.module.css */
+.header {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+
+  padding-top: 2rem;
+  padding-bottom: 2rem;
+  padding-left: 10rem;
+  padding-right: 2rem;
+  background-color: #1c1e21;
+  color: white;
+  z-index: 10;
+}
+
+.logo {
+  font-size: 24px;
+  font-weight: bold;
+  cursor: pointer;
+}
+
+.lookup {
+  color: #007bff;
+}
+
+.nav a {
+  margin: 0 15px;
+  color: white;
+  text-decoration: none;
+  font-size: 1.5rem;
+  cursor: pointer;
+}
+
+.login {
+  background: linear-gradient(90deg, #0059fc 0, #4d8bfd 100%);
+  padding: 0.8rem 2rem;
+  border-radius: 1rem;
+}
+
+.login:hover {
+  background: linear-gradient(90deg, #003bb5 0%, #366bdb 100%);
+}
+
+.nav a:hover {
+  color: rgb(33, 231, 33);
+}

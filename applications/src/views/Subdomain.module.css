@@ -1,0 +1,53 @@
+/* Subdomain.module.css */
+.container {
+  color: black;
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.mainContent {
+  text-align: center;
+  margin-top: 50px;
+  width: 80%;
+}
+
+.detailsContainer {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.domainDetails {
+  font-size: 24px;
+  margin-right: 20px; /* Space between text and input field */
+}
+
+.inputContainer {
+  display: flex;
+  align-items: center;
+}
+
+.input {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: 1px solid #ccc;
+  border-radius: 4px 0 0 4px;
+  width: 300px;
+}
+
+.button {
+  padding: 10px 20px;
+  font-size: 16px;
+  border: none;
+  border-radius: 0 4px 4px 0;
+  background: linear-gradient(90deg, #0059fc 0, #4d8bfd 100%);
+  color: white;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(90deg, #003bb5 0%, #366bdb 100%);
+}
