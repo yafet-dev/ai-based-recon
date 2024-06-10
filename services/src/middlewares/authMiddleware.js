@@ -1,10 +1,11 @@
-import { verify, sign } from 'jsonwebtoken';
 import { promisify } from 'util';
 import crypto from 'crypto';
-import asyncError from '../utils/asyncError';
-import AppError from '../utils/appError';
-import { User } from '../models/adminModel';
-import sendEmail from '../utils/email';
+import asyncError from '../utils/asyncError.js';
+import AppError from '../utils/appError.js';
+import { User } from '../models/userModel.js';
+import sendEmail from '../utils/email.js';
+import pkg from 'jsonwebtoken';
+const { verify, sign } = pkg;
 
 const signToken = (id) => {
   return sign({ id }, process.env.JWT_SECRET, {
@@ -13,7 +14,7 @@ const signToken = (id) => {
 };
 
 const createSendToken = (user, statusCode, res) => {
-  if (user.verified && user.approved) {
+  if (user.verified) {
     const token = signToken(user._id);
     const cookieOptions = {
       expires: new Date(
@@ -35,7 +36,7 @@ const createSendToken = (user, statusCode, res) => {
   } else {
     res.status(403).json({
       status: 'failed',
-      message: 'please verify and/or approve your account',
+      message: 'please verify  your account',
     });
   }
 };
@@ -75,7 +76,7 @@ export const signup = asyncError(async (req, res, next) => {
 
   const verificationURL = `${process.env.FRONTEND_URL}/verify/${resetToken}`;
 
-  const message = `Welcome to PSTS, click the link to verify your email: ${verificationURL}.\nIf you didn't signup, please ignore this email!`;
+  const message = `Welcome to ai-recon, click the link to verify your email: ${verificationURL}.\nIf you didn't signup, please ignore this email!`;
 
   try {
     await sendEmail({

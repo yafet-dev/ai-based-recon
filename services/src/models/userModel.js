@@ -30,11 +30,6 @@ const userSchema = new Schema({
     minlength: 6,
     select: false,
   },
-  role: {
-    type: String,
-    default: 'admin',
-    enum: ['admin', 'owner'],
-  },
   confirmPassword: {
     type: String,
     required: [true, 'Please confirm the password'],
@@ -52,10 +47,7 @@ const userSchema = new Schema({
     type: Boolean,
     default: false,
   },
-  approved: {
-    type: Boolean,
-    default: false,
-  },
+
   photo: {
     type: String,
     default: null,

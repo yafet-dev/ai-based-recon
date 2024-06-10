@@ -4,6 +4,11 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import errorHandler from './src/middlewares/errorMiddleware.js';
+import AppError from './src/utils/appError.js';
+import adminRoute from './src/routes/userRoute.js';
+import subDomainFinder from './src/routes/subDomainFinderRoute.js';
+import portScanner from './src/routes/portScannerRoute.js';
 
 dotenv.config();
 
@@ -22,6 +27,7 @@ app.use(
   }),
 );
 app.use(express.json());
+<<<<<<< HEAD
 
 // Serve static files
 app.use(express.static(path.join(__dirname, 'public')));
@@ -29,6 +35,14 @@ app.use(express.static(path.join(__dirname, 'public')));
 // Default route
 app.get('/', (req, res) => {
   res.send('Hello, world!');
+=======
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api/users', adminRoute);
+app.use('/api/subdomainfinder', subDomainFinder);
+app.use('/api/portScanner', portScanner);
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
+>>>>>>> 423d37b (upload)
 });
 
 // Catch all route for undefined routes
