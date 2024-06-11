@@ -1,0 +1,26 @@
+/* SinglePort.module.css */
+.port {
+  display: flex;
+  justify-content: space-between;
+  padding: 10px 20px;
+  margin: 10px 0;
+  background-color: #f8f9fa;
+  border-radius: 5px;
+}
+
+.name {
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.status {
+  color: #6c757d;
+  font-weight: 400;
+  font-size: 1.5rem;
+}
+
+.type {
+  color: #6c757d;
+  font-weight: 400;
+  font-size: 1.5rem;
+}

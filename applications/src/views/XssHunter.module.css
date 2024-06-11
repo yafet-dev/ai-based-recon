@@ -1,0 +1,77 @@
+/* XssHunter.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  height: 100vh;
+  background-color: #f0f2f5;
+}
+
+.scannerForm {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 5rem; /* Adjust this value to position the form near the PageNav */
+  width: 100%;
+}
+
+.form {
+  background-color: #ffffff;
+  padding: 2rem 2rem;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 100%;
+  max-width: 400px;
+}
+
+.title {
+  font-size: 2.2rem;
+  margin-bottom: 1.5rem;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+.inputGroup {
+  margin-bottom: 2rem;
+}
+
+.input {
+  width: 100%;
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: 1.5rem;
+}
+
+.button {
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(90deg, #0059fc 0%, #4d8bfd 100%);
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  font-family: "Rubik", sans-serif;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+}
+
+.button:hover {
+  background: linear-gradient(90deg, #003bb5 0%, #366bdb 100%);
+}
+
+.resultsBox {
+  margin-top: 2rem;
+  width: 100%;
+  max-width: 1000px; /* Increase the width to make it wider */
+  background-color: #ffffff;
+  padding: 20px;
+  border-radius: 1rem;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.resultTitle {
+  margin-bottom: 1rem;
+  text-align: center;
+  font-size: 1.5rem;
+}

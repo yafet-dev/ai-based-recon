@@ -5,11 +5,13 @@ const PageNav = () => {
   return (
     <header className={styles.header}>
       <div className={styles.logo}>
-        🌐 AI <span className={styles.lookup}>Recon</span>
+        🌐 Hunter <span className={styles.lookup}>Tool</span>
       </div>
       <nav className={styles.nav}>
         <a href="#findsubdomains">Subdomain Finder</a>
         <a href="#portscanner">Port Scanner</a>
+        <a href="#portscanner">Sqli Hunter</a>
+        <a href="#XssHunter">XSSHunter</a>
         <a href="#signup">Sign up</a>
         <a href="#login" className={styles.login}>
           Login

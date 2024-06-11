@@ -1,0 +1,47 @@
+/* SingleXssResult.module.css */
+.result {
+  display: flex;
+  justify-content: space-between;
+  align-items: center; /* Center items vertically */
+  background-color: #fff;
+  padding: 0.5rem 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  margin-bottom: 0.5rem;
+  font-size: 1.2rem;
+}
+
+.url {
+  font-weight: 400;
+  font-size: 1.5rem;
+  color: #007bff;
+  text-decoration: none;
+}
+
+.url:hover {
+  text-decoration: underline;
+}
+
+.payload {
+  color: #6c757d;
+  font-weight: 400;
+  font-size: 1.2rem;
+  margin-top: 1rem; /* Add margin to increase the gap */
+}
+
+.payloadUrl {
+}
+
+.status {
+  display: flex;
+  align-items: center; /* Center items vertically */
+  color: #6c757d;
+  font-weight: 400;
+  font-size: 1.2rem;
+}
+
+.vulnerable {
+  color: red;
+  font-weight: 400;
+  font-size: 1.5rem;
+}

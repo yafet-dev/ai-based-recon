@@ -1,0 +1,54 @@
+/* HomePage.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  height: 91.7vh;
+  background:
+    linear-gradient(rgba(0, 0, 0, 0.95), rgba(36, 42, 46, 0.7)),
+    url("/background.jpg") no-repeat center center;
+  background-size: cover;
+  position: relative;
+  color: white;
+}
+
+.subtitle {
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  line-height: 2rem;
+  width: 50rem;
+  font-weight: 300;
+}
+.content {
+  text-align: center;
+  z-index: 1; /* Dark overlay for better text readability */
+  padding: 20px;
+  border-radius: 10px;
+}
+
+.title {
+  font-size: 3rem;
+  margin-bottom: 2rem;
+}
+
+.button {
+  padding: 1rem 2rem;
+  font-size: 1.5rem;
+  border: none;
+  border-radius: 5px;
+  background: linear-gradient(90deg, #0059fc 0%, #4d8bfd 100%);
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s ease;
+  box-shadow:
+    0 0 30px rgba(0, 89, 252, 0.7),
+    0 0 60px rgba(0, 89, 252, 0.5);
+}
+
+.button:hover {
+  background: linear-gradient(90deg, #003bb5 0%, #366bdb 100%);
+  box-shadow:
+    0 0 40px rgba(0, 89, 252, 1),
+    0 0 80px rgba(0, 89, 252, 0.7);
+}
