@@ -1,0 +1,76 @@
+/* ProfilePage.module.css */
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin-top: 9rem;
+
+  height: 100vh;
+}
+
+.profileContainer {
+  display: grid;
+  grid-template-columns: 1fr 2fr;
+  gap: 2rem;
+  background-color: #ffffff;
+  padding: 2rem;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  width: 80%;
+  max-width: 600px;
+}
+
+.photoContainer {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.photo {
+  width: 150px;
+  height: 150px;
+  border-radius: 50%;
+  object-fit: cover;
+}
+
+.detailsContainer {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+
+.form {
+  display: flex;
+  flex-direction: column;
+}
+
+.inputGroup {
+  margin-bottom: 2rem;
+}
+
+.label {
+  margin-bottom: 0.5rem;
+  font-size: 1.5rem;
+  font-weight: bold;
+  margin-right: 2rem;
+}
+.button {
+  width: 100%;
+  padding: 0.8rem;
+  background: linear-gradient(90deg, #0059fc 0%, #4d8bfd 100%);
+  border: none;
+  border-radius: 1rem;
+  color: white;
+  font-family: "Rubik", sans-serif;
+  font-size: 1.5rem;
+  cursor: pointer;
+  transition: background 0.3s ease;
+  width: 70%;
+}
+
+.input {
+  padding: 1rem;
+  border: 1px solid #ddd;
+  border-radius: 0.5rem;
+  font-size: rem;
+}

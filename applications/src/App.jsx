@@ -6,6 +6,7 @@ import "./App.css";
 import Subdomain from "./views/Subdomain";
 import XssHunter from "./views/XssHunter";
 import SqliHunter from "./views/SqliHunter.";
+import ProfilePage from "./views/ProfilePage";
 // import PortScanner from "./views/PortScanner";
 // import XssHunter from "./views/XssHunter";
 // import SqliHunter from "./views/SqliHunter.";
@@ -13,7 +14,7 @@ import SqliHunter from "./views/SqliHunter.";
 // import XssHunter from "./views/XssHunter";
 
 function App() {
-  return <XssHunter />;
+  return <ProfilePage />;
 }
 
 export default App;
