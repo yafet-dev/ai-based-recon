@@ -1,5 +1,5 @@
 import nodemailer from 'nodemailer';
-import AppError from './appError';
+import AppError from './appError.js';
 
 const sendEmail = async (options) => {
   // 1) Create a transporter

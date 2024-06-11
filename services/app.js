@@ -4,6 +4,11 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
+import errorHandler from './src/middlewares/errorMiddleware.js';
+import AppError from './src/utils/appError.js';
+import adminRoute from './src/routes/userRoute.js';
+import subDomainFinder from './src/routes/subDomainFinderRoute.js';
+import portScanner from './src/routes/portScannerRoute.js';
 
 dotenv.config();
 
@@ -27,8 +32,13 @@ app.use(express.json());
 app.use(express.static(path.join(__dirname, 'public')));
 
 // Default route
-app.get('/', (req, res) => {
-  res.send('Hello, world!');
+
+// app.use(express.static(path.join(__dirname, 'public')));
+app.use('/api/users', adminRoute);
+app.use('/api/subdomainfinder', subDomainFinder);
+app.use('/api/portScanner', portScanner);
+app.all('*', (req, res, next) => {
+  next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
 
 // Catch all route for undefined routes
@@ -37,23 +47,6 @@ app.all('*', (req, res, next) => {
     status: 'fail',
     message: `Can't find ${req.originalUrl} on this server!`,
   });
-});
-
-// Global error handling middleware
-app.use((err, req, res, next) => {
-  err.statusCode = err.statusCode || 500;
-  err.status = err.status || 'error';
-
-  res.status(err.statusCode).json({
-    status: err.status,
-    message: err.message,
-  });
-});
-
-// Start the server
-const PORT = process.env.PORT || 3000;
-app.listen(PORT, () => {
-  console.log(`Server running on port ${PORT}`);
 });
 
 export default app;
