@@ -25,6 +25,7 @@ function App() {
           <Route path="subdomainfinder" element={<Subdomain />} />
           <Route path="signin" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="verficationmethod" element={<VerificationMessage />} />
         </Routes>
       </BrowserRouter>
       <Toaster

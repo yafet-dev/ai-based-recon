@@ -1,9 +1,13 @@
 import React from "react";
 import styles from "./VerificationMessage.module.css";
+import { useNavigate } from "react-router-dom";
 
 const VerificationMessage = () => {
-  const handleLoginRedirect = () => {
-    history.push("/login");
+  const navigate = useNavigate();
+  const handleLoginRedirect = async (e) => {
+    e.preventDefault();
+
+    navigate("/signin");
   };
 
   return (
