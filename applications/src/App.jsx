@@ -9,6 +9,7 @@ import SqliHunter from "./views/SqliHunter.";
 import ProfilePage from "./views/ProfilePage";
 import HomePage from "./views/HomePage";
 import VerificationMessage from "./views/VerificationMessage";
+import BlindXssResults from "./views/BlindXssResults";
 // import PortScanner from "./views/PortScanner";
 // import XssHunter from "./views/XssHunter";
 // import SqliHunter from "./views/SqliHunter.";
@@ -16,7 +17,7 @@ import VerificationMessage from "./views/VerificationMessage";
 // import XssHunter from "./views/XssHunter";
 
 function App() {
-  return <VerificationMessage />;
+  return <BlindXssResults />;
 }
 
 export default App;

@@ -8,6 +8,7 @@ const PageNav = () => {
         🌐 Hunter <span className={styles.lookup}>Tool</span>
       </div>
       <nav className={styles.nav}>
+        <a href="#findsubdomains">Blind XSS</a>
         <a href="#findsubdomains">Subdomain Finder</a>
         <a href="#portscanner">Port Scanner</a>
         <a href="#portscanner">Sqli Hunter</a>
