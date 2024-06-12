@@ -22,6 +22,6 @@ const Subdomain = () => {
       </div>
     </div>
   );
-};s
+};
 
 export default Subdomain;

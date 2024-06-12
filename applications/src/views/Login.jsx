@@ -1,16 +1,37 @@
 import React, { useState } from "react";
 import PageNav from "../components/PageNav";
 import styles from "./Login.module.css";
+import { useNavigate } from "react-router-dom";
+import { toast } from "react-hot-toast";
 
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleLogin = (e) => {
+  const handleLogin = async (e) => {
     e.preventDefault();
-    // Add login logic here
-    console.log("Email:", email);
-    console.log("Password:", password);
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_API}/users/signin`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({ email: email, password: password }),
+          credentials: "include",
+        }
+      );
+      if (response.ok) {
+        const userData = await response.json();
+
+        navigate("/subdomainfinder");
+      } else {
+        const errorData = await response.json();
+        toast.error(error.message || "login failed");
+      }
+    } catch (error) {
+      toast.error("Login error:", error);
+    }
   };
 
   return (

@@ -4,7 +4,6 @@ import path from 'path';
 import { fileURLToPath } from 'url';
 import cookieParser from 'cookie-parser';
 import dotenv from 'dotenv';
-import errorHandler from './src/middlewares/errorMiddleware.js';
 import AppError from './src/utils/appError.js';
 import adminRoute from './src/routes/userRoute.js';
 import subDomainFinder from './src/routes/subDomainFinderRoute.js';
