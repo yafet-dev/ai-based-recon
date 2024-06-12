@@ -4,6 +4,16 @@ import "./App.css";
 import Login from "./views/Login";
 import SignUp from "./views/SignUp";
 import Subdomain from "./views/Subdomain";
+import XssHunter from "./views/XssHunter";
+import SqliHunter from "./views/SqliHunter.";
+import ProfilePage from "./views/ProfilePage";
+import HomePage from "./views/HomePage";
+import VerificationMessage from "./views/VerificationMessage";
+// import PortScanner from "./views/PortScanner";
+// import XssHunter from "./views/XssHunter";
+// import SqliHunter from "./views/SqliHunter.";
+// import HomePage from "./views/HomePage";
+// import XssHunter from "./views/XssHunter";
 import { Toaster } from "react-hot-toast";
 
 function App() {
