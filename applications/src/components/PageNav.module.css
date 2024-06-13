@@ -18,6 +18,7 @@
   font-size: 24px;
   font-weight: bold;
   cursor: pointer;
+  color: white;
 }
 
 .lookup {
@@ -36,6 +37,8 @@
   background: linear-gradient(90deg, #0059fc 0, #4d8bfd 100%);
   padding: 0.8rem 2rem;
   border-radius: 1rem;
+  border: none;
+  cursor: pointer;
 }
 
 .login:hover {

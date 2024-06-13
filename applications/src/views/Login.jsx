@@ -24,10 +24,13 @@ const Login = () => {
       if (response.ok) {
         const userData = await response.json();
 
+        // Save user ID in localStorage
+        localStorage.setItem("userId", userData.data.userId);
+
         navigate("/subdomainfinder");
       } else {
         const errorData = await response.json();
-        toast.error(error.message || "login failed");
+        toast.error(errorData.message || "login failed");
       }
     } catch (error) {
       toast.error("Login error:", error);

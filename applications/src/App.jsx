@@ -5,33 +5,57 @@ import Login from "./views/Login";
 import SignUp from "./views/SignUp";
 import Subdomain from "./views/Subdomain";
 import XssHunter from "./views/XssHunter";
-import SqliHunter from "./views/SqliHunter.";
-import ProfilePage from "./views/ProfilePage";
-import HomePage from "./views/HomePage";
 import VerificationMessage from "./views/VerificationMessage";
 import BlindXssResults from "./views/BlindXssResults";
 import PortScanner from "./views/PortScanner";
-// import XssHunter from "./views/XssHunter";
-// import SqliHunter from "./views/SqliHunter.";
-// import HomePage from "./views/HomePage";
-// import XssHunter from "./views/XssHunter";
 import { Toaster } from "react-hot-toast";
 import Verify from "./views/Verify";
+import HomePage from "./views/HomePage";
+import PrivateRoute from "./components/PrivateRoute"; // Import the PrivateRoute component
 
 function App() {
   return (
     <>
       <BrowserRouter>
         <Routes>
-          <Route index element={<Navigate replace to="subdomainfinder" />} />
-          <Route path="subdomainfinder" element={<Subdomain />} />
+          <Route index element={<Navigate replace to="homepage" />} />
+          <Route
+            path="subdomainfinder"
+            element={
+              <PrivateRoute>
+                <Subdomain />
+              </PrivateRoute>
+            }
+          />
           <Route path="signin" element={<Login />} />
+          <Route path="homepage" element={<HomePage />} />
           <Route path="signup" element={<SignUp />} />
           <Route path="verify/:token" element={<Verify />} />
           <Route path="verficationmethod" element={<VerificationMessage />} />
-          <Route path="xsshunter" element={<XssHunter />} />
-          <Route path="portscanner" element={<PortScanner />} />
-          <Route path="blindxsshunter" element={<BlindXssResults />} />
+          <Route
+            path="xsshunter"
+            element={
+              <PrivateRoute>
+                <XssHunter />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="portscanner"
+            element={
+              <PrivateRoute>
+                <PortScanner />
+              </PrivateRoute>
+            }
+          />
+          <Route
+            path="blindxsshunter"
+            element={
+              <PrivateRoute>
+                <BlindXssResults />
+              </PrivateRoute>
+            }
+          />
         </Routes>
       </BrowserRouter>
       <Toaster

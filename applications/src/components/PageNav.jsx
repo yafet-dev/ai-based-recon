@@ -1,22 +1,37 @@
 import React from "react";
+import { Link, useNavigate } from "react-router-dom";
 import styles from "./PageNav.module.css";
 
 const PageNav = () => {
+  const isLoggedIn = localStorage.getItem("userId") !== null;
+  const navigate = useNavigate();
+
+  const handleLogout = () => {
+    localStorage.removeItem("userId");
+    navigate("/signin");
+  };
+
   return (
     <header className={styles.header}>
-      <div className={styles.logo}>
+      <Link to="/" className={styles.logo}>
         🌐 Hunter <span className={styles.lookup}>Tool</span>
-      </div>
+      </Link>
       <nav className={styles.nav}>
-        <a href="#findsubdomains">Blind XSS</a>
-        <a href="#findsubdomains">Subdomain Finder</a>
-        <a href="#portscanner">Port Scanner</a>
-        <a href="#XssHunter">XSSHunter</a>
-        <a href="#signup">Sign up</a>
-        <a href="#login" className={styles.login}>
-          Login
-        </a>
-        <div className={styles.dropdown}></div>
+        <Link to="/blindxsshunter">Blind XSS</Link>
+        <Link to="/subdomainfinder">Subdomain Finder</Link>
+        <Link to="/portscanner">Port Scanner</Link>
+        <Link to="/xsshunter">XSS Hunter</Link>
+        {!isLoggedIn && <Link to="/signup">Sign Up</Link>}
+        {!isLoggedIn && (
+          <Link to="/signin" className={styles.login}>
+            Login
+          </Link>
+        )}
+        {isLoggedIn && (
+          <button onClick={handleLogout} className={styles.login}>
+            Logout
+          </button>
+        )}
       </nav>
     </header>
   );
