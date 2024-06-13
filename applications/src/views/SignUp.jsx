@@ -1,6 +1,8 @@
 import React, { useState } from "react";
 import PageNav from "./../components/PageNav";
 import styles from "./SignUp.module.css";
+import { toast } from "react-hot-toast";
+import { useNavigate } from "react-router-dom";
 
 const SignUp = () => {
   const [firstName, setFirstName] = useState("");
@@ -8,17 +10,37 @@ const SignUp = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const navigate = useNavigate();
 
-  const handleSignUp = (e) => {
+  const handleSignUp = async (e) => {
     e.preventDefault();
-    // Add sign-up logic here
-    console.log("First Name:", firstName);
-    console.log("Last Name:", lastName);
-    console.log("Email:", email);
-    console.log("Password:", password);
-    console.log("Confirm Password:", confirmPassword);
-  };
 
+    try {
+      const response = await fetch(
+        `${import.meta.env.VITE_BACKEND_API}/users/signup`,
+        {
+          method: "POST",
+          headers: { "Content-Type": "application/json" },
+          body: JSON.stringify({
+            firstName,
+            lastName,
+            email,
+            password,
+            confirmPassword,
+          }),
+          credentials: "include",
+        }
+      );
+      if (response.ok) {
+        navigate("/verficationmethod");
+      } else {
+        const errorData = await response.json();
+        toast.error(error.message || "login failed");
+      }
+    } catch (error) {
+      toast.error("Login error:", error);
+    }
+  };
   return (
     <div className={styles.container}>
       <PageNav />
