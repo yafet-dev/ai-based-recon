@@ -1,7 +1,7 @@
 import React from "react";
 import styles from "./SingleSubdomain.module.css";
 
-const SingleSubdomain = ({ name, status }) => {
+const SingleSubdomain = ({ name, statusCode, takeoverStatus }) => {
   return (
     <div className={styles.subdomain}>
       <a
@@ -12,7 +12,8 @@ const SingleSubdomain = ({ name, status }) => {
       >
         {name}
       </a>
-      <div className={styles.status}>Status: {status}</div>
+      <div className={styles.status}>Status Code: {statusCode}</div>
+      <div className={styles.takeoverStatus}>[{takeoverStatus}]</div>
     </div>
   );
 };

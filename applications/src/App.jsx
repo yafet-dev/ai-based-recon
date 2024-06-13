@@ -17,7 +17,7 @@ import BlindXssResults from "./views/BlindXssResults";
 // import XssHunter from "./views/XssHunter";
 
 function App() {
-  return <BlindXssResults />;
+  return <Subdomain />;
 }
 
 export default App;

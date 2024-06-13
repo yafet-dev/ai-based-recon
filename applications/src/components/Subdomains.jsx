@@ -1,26 +1,9 @@
-import React, { useState, useEffect } from "react";
+import React from "react";
 import SingleSubdomain from "./SingleSubdomain";
-import Loading from "./Loading";
 import styles from "./Subdomains.module.css";
+import { useState } from "react";
 
-const Subdomains = () => {
-  const [subdomains, setSubdomains] = useState([]);
-  const [isLoading, setIsLoading] = useState(true);
-
-  useEffect(() => {
-    // Simulate API call
-    setTimeout(() => {
-      setSubdomains([
-        { name: "ns1.aait.edu.et", status: "404" },
-        { name: "ns2.aait.edu.et", status: "200" },
-        { name: "www.aait.edu.et", status: "200" },
-        { name: "isims.aait.edu.et", status: "404" },
-        { name: "portal.aait.edu.et", status: "200" },
-      ]);
-      setIsLoading(false);
-    }, 2000); // Simulate 2 seconds delay for API call
-  }, []);
-
+const Subdomains = ({ subdomains }) => {
   const [currentPage, setCurrentPage] = useState(0);
   const subdomainsPerPage = 10;
   const startIndex = currentPage * subdomainsPerPage;
@@ -41,8 +24,8 @@ const Subdomains = () => {
     }
   };
 
-  if (isLoading) {
-    return <Loading />;
+  if (subdomains.length === 0) {
+    return null; // Return null if there are no subdomains
   }
 
   return (
@@ -52,9 +35,10 @@ const Subdomains = () => {
       </h2>
       {currentSubdomains.map((subdomain) => (
         <SingleSubdomain
-          key={subdomain.name}
-          name={subdomain.name}
-          status={subdomain.status}
+          key={subdomain.subdomain}
+          name={subdomain.subdomain}
+          statusCode={subdomain.statusCode}
+          takeoverStatus={subdomain.takeoverStatus}
         />
       ))}
       {subdomains.length > subdomainsPerPage && (

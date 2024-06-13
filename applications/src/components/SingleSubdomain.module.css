@@ -1,4 +1,3 @@
-/* SingleSubdomain.module.css */
 .subdomain {
   display: flex;
   justify-content: space-between;
@@ -13,8 +12,13 @@
   font-size: 1.5rem;
 }
 
-.status {
-  color: #6c757d;
+.status,
+.takeoverStatus {
+  color: black;
   font-weight: 400;
   font-size: 1.5rem;
+}
+
+.takeoverStatus {
+  color: red;
 }
