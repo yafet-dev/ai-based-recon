@@ -5,4 +5,4 @@ const router = express.Router();
 
 router.get('/test-xss', testXss);
 
-export default router; // Use default export
+export default router;
