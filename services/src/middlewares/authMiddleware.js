@@ -30,13 +30,14 @@ const createSendToken = (user, statusCode, res) => {
     res.status(statusCode).json({
       status: 'success',
       data: {
+        userId: user._id,
         user,
       },
     });
   } else {
     res.status(403).json({
       status: 'failed',
-      message: 'please verify  your account',
+      message: 'please verify your account',
     });
   }
 };

