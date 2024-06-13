@@ -7,8 +7,9 @@ import dotenv from 'dotenv';
 import errorHandler from './src/middlewares/errorMiddleware.js';
 import AppError from './src/utils/appError.js';
 import adminRoute from './src/routes/userRoute.js';
-import subDomainFinder from './src/routes/subDomainFinderRoute.js';
+import subDomainFinder from './src/routes/SubdomainFinderRouter.js'; // Ensure this path is correct
 import portScanner from './src/routes/portScannerRoute.js';
+import xssHunterRouter from './src/routes/xssHunterRouter.js';
 
 dotenv.config();
 
@@ -37,6 +38,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 app.use('/api/users', adminRoute);
 app.use('/api/subdomainfinder', subDomainFinder);
 app.use('/api/portScanner', portScanner);
+app.use('/api/xsshunter', xssHunterRouter);
 app.all('*', (req, res, next) => {
   next(new AppError(`Can't find ${req.originalUrl} on this server!`, 404));
 });
