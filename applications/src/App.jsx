@@ -15,6 +15,7 @@ import VerificationMessage from "./views/VerificationMessage";
 // import HomePage from "./views/HomePage";
 // import XssHunter from "./views/XssHunter";
 import { Toaster } from "react-hot-toast";
+import Verify from "./views/Verify";
 
 function App() {
   return (
@@ -25,6 +26,7 @@ function App() {
           <Route path="subdomainfinder" element={<Subdomain />} />
           <Route path="signin" element={<Login />} />
           <Route path="signup" element={<SignUp />} />
+          <Route path="verify/:token" element={<Verify />} />
           <Route path="verficationmethod" element={<VerificationMessage />} />
         </Routes>
       </BrowserRouter>

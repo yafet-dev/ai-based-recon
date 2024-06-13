@@ -125,8 +125,7 @@ export const verification = asyncError(async (req, res, next) => {
 
   res.status(200).json({
     status: 'success',
-    message:
-      'You have signed up successfully. Once the owner approves, you can sign in',
+    message: 'You have signed up successfully',
   });
 });
 
