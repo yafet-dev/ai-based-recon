@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import PageNav from "./../components/PageNav";
 import SingleXssResult from "./../components/SingleXssResult";
 import styles from "./XssHunter.module.css";
+import axios from "axios";
 
 const XssHunter = () => {
   const [domain, setDomain] = useState("");
@@ -13,22 +14,16 @@ const XssHunter = () => {
     setIsLoading(true);
     setResults([]);
 
-    // Simulate API call
-    setTimeout(() => {
-      setResults([
-        {
-          url: "http://aait.edu.et?search=<script>alert('XSS1')</script>",
-          payload: "<script>alert('XSS1')</script>",
-          status: "vulnerable",
-        },
-        {
-          url: "http://aait.edu.et?search=<img src=x onerror=alert('XSS2')>",
-          payload: "<img src=x onerror=alert('XSS2')>",
-          status: "vulnerable",
-        },
-      ]);
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/xsshunter/test-xss?url=${encodeURIComponent(domain)}`
+      );
+      setResults(response.data);
+    } catch (error) {
+      console.error("Error scanning for XSS vulnerabilities:", error);
+    } finally {
       setIsLoading(false);
-    }, 2000);
+    }
   };
 
   return (

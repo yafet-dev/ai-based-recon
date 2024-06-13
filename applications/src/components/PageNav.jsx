@@ -11,7 +11,6 @@ const PageNav = () => {
         <a href="#findsubdomains">Blind XSS</a>
         <a href="#findsubdomains">Subdomain Finder</a>
         <a href="#portscanner">Port Scanner</a>
-        <a href="#portscanner">Sqli Hunter</a>
         <a href="#XssHunter">XSSHunter</a>
         <a href="#signup">Sign up</a>
         <a href="#login" className={styles.login}>

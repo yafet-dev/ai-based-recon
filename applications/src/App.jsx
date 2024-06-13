@@ -10,7 +10,7 @@ import ProfilePage from "./views/ProfilePage";
 import HomePage from "./views/HomePage";
 import VerificationMessage from "./views/VerificationMessage";
 import BlindXssResults from "./views/BlindXssResults";
-// import PortScanner from "./views/PortScanner";
+import PortScanner from "./views/PortScanner";
 // import XssHunter from "./views/XssHunter";
 // import SqliHunter from "./views/SqliHunter.";
 // import HomePage from "./views/HomePage";
@@ -29,6 +29,9 @@ function App() {
           <Route path="signup" element={<SignUp />} />
           <Route path="verify/:token" element={<Verify />} />
           <Route path="verficationmethod" element={<VerificationMessage />} />
+          <Route path="xsshunter" element={<XssHunter />} />
+          <Route path="portscanner" element={<PortScanner />} />
+          <Route path="blindxsshunter" element={<BlindXssResults />} />
         </Routes>
       </BrowserRouter>
       <Toaster

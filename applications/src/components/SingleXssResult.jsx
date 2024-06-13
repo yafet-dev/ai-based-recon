@@ -16,7 +16,13 @@ const SingleXssResult = ({ url, payload, status }) => {
         <div className={styles.payload}>Payload: {payload}</div>
       </div>
       <div className={styles.status}>
-        <span className={styles.vulnerable}>{status}</span>
+        <span
+          className={
+            status === "vulnerable" ? styles.vulnerable : styles.notVulnerable
+          }
+        >
+          {status}
+        </span>
       </div>
     </div>
   );

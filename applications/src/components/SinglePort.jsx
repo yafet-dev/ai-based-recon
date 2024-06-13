@@ -4,9 +4,15 @@ import styles from "./SinglePort.module.css";
 const SinglePort = ({ port, status, type }) => {
   return (
     <div className={styles.port}>
-      <div className={styles.name}>Port {port}</div>
-      <div className={styles.status}>Status: {status}</div>
-      <div className={styles.type}>Type: {type}</div>
+      <div className={styles.portInfo}>
+        <span className={styles.portNumber}>Port: {port}</span>
+        <span className={styles.portType}>{type}</span>
+      </div>
+      <div
+        className={status === "open" ? styles.statusOpen : styles.statusClosed}
+      >
+        Status: {status}
+      </div>
     </div>
   );
 };

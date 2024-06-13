@@ -2,26 +2,31 @@ import React, { useState } from "react";
 import PageNav from "./../components/PageNav";
 import SinglePort from "./../components/SinglePort";
 import styles from "./PortScanner.module.css";
+import axios from "axios";
 
 const PortScanner = () => {
   const [domain, setDomain] = useState("");
   const [results, setResults] = useState([]);
   const [isLoading, setIsLoading] = useState(false);
+  const [ip, setIp] = useState("");
 
   const handleScan = async (e) => {
     e.preventDefault();
     setIsLoading(true);
     setResults([]);
+    setIp("");
 
-    // Simulate API call
-    setTimeout(() => {
-      setResults([
-        { port: 80, status: "open", type: "tcp" },
-        { port: 443, status: "open", type: "tcp" },
-        { port: 21, status: "closed", type: "tcp" },
-      ]);
+    try {
+      const response = await axios.get(
+        `http://localhost:8000/api/portScanner/scan-ports?domain=${encodeURIComponent(domain)}`
+      );
+      setResults(response.data.results);
+      setIp(response.data.ip);
+    } catch (error) {
+      console.error("Error scanning ports:", error);
+    } finally {
       setIsLoading(false);
-    }, 2000);
+    }
   };
 
   return (
@@ -47,13 +52,13 @@ const PortScanner = () => {
       </div>
       {results.length > 0 && (
         <div className={styles.resultsBox}>
-          <h3 className={styles.resultTitle}>Scan Results:</h3>
+          <h3 className={styles.resultTitle}>Scan Results: {ip}</h3>
           {results.map((result, index) => (
             <SinglePort
               key={index}
               port={result.port}
               status={result.status}
-              type={result.type}
+              type={result.name}
             />
           ))}
         </div>
