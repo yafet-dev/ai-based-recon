@@ -1,7 +1,7 @@
 www.aait.edu.et
-portal.aait.edu.et
-isims.aait.edu.et
-smis.aait.edu.et
 localhost.aait.edu.et
 ns1.aait.edu.et
 ns2.aait.edu.et
+portal.aait.edu.et
+isims.aait.edu.et
+smis.aait.edu.et
