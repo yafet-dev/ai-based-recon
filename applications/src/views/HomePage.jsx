@@ -1,6 +1,7 @@
 import React from "react";
 import PageNav from "./../components/PageNav";
 import styles from "./HomePage.module.css";
+import { Link, useNavigate } from "react-router-dom";
 
 const HomePage = () => {
   return (
@@ -16,7 +17,9 @@ const HomePage = () => {
             and test for SQLi and XSS vulnerabilities. Empower your security
             team with the best tools to keep your applications safe and secure.
           </p>
-          <button className={styles.button}>Get Started</button>
+          <Link to="/subdomainfinder" className={styles.button}>
+            Get Started
+          </Link>
         </div>
       </div>
     </>

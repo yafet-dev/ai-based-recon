@@ -13,6 +13,7 @@ const commonPorts = [
   { port: 443, name: 'HTTPS' },
   { port: 8080, name: 'HTTP Proxy' },
   { port: 8000, name: 'custom use' },
+  { port: 10000, name: 'custom use' },
 ];
 
 const scanPort = (ip, port) => {

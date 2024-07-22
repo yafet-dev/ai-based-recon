@@ -62,7 +62,7 @@
 .resultsBox {
   margin-top: 2rem;
   width: 100%;
-  max-width: 1000px; /* Increase the width to make it wider */
+  max-width: 1000px;
   background-color: #ffffff;
   padding: 20px;
   border-radius: 1rem;
